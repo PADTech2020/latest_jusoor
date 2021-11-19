@@ -1,0 +1,40 @@
+#surveyModal.modal {
+    z-index: 991050;
+}
+h3.msg{
+    color:#0a9928;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.modal-header .close {
+    margin-top: -2px;
+    float: left;
+    top: 15px;
+    left: 15px;
+    position: absolute;
+}
+#surveyModal button.btn-primary{
+    background-color: #ac0000;
+    color: #fff;
+}
+.modal-header .modal-title {
+    text-align: center;
+}
+.modal-header .close:hover {
+    color: #fff;
+}
+.modal-header .modal-title img {
+    float: right;
+    margin-top: -10px;
+}
+
+.modal-header {
+    min-height: 16.43px;
+    padding: 15px;
+    border-bottom: 1px solid #ffffff;
+    background: url(https://jusoor.co/images/footer2.jpg) no-repeat 0 0 rgba(0, 0, 0, 0);
+    background-position: right;
+    background-size: cover;
+    color: #fff;
+}
