@@ -1,0 +1,9 @@
+{
+    "name": "Researchers",
+    "namespace": "Botble\\Researchers\\",
+    "provider": "Botble\\Researchers\\Providers\\ResearchersServiceProvider",
+    "author": "N/A",
+    "url": "N/A",
+    "version": "1.0",
+    "description": "The description for module researchers"
+}

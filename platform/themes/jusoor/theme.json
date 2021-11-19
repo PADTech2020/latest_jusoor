@@ -1,0 +1,8 @@
+{
+    "name": "Jusoor",
+    "namespace": "Theme\\Jusoor\\",
+    "description": "This is a Jusoor New theme",
+    "author": "Abdulhamid Ta",
+    "version": "1.0",
+    "required_plugins": []
+}
