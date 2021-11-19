@@ -22,6 +22,13 @@ $cats_color = [
 $counter = 0;
 ?>
 <nav class="mainmenu">
+    <div class="header_links">
+        <ul>
+            <li class="header_links_item share"><a href="/"> {{__('شارك قصتك')}}</a></li>
+            <li class="header_links_item join"><a href="/"> {{__('انضم الى فريقنا')}}</a></li>
+            {{--<li class="header_links_item trends" >{{__('تريند')}}</li>--}}
+        </ul>
+    </div>
     <ul {!! $options !!}>
         @foreach ($menu_nodes as $key => $row)
         <li class="{{ $row->css_class }} @if ($row->url == Request::url()) current @endif  @if ($row->has_child) drop @endif">
@@ -50,11 +57,5 @@ $counter = 0;
         @endif
 
     </ul>
-    <div class="header_links">
-        <ul>
-            <li class="header_links_item share"><a href="/"> {{__('شارك قصتك')}}</a></li>
-            <li class="header_links_item join"><a href="/"> {{__('انضم الى فريقنا')}}</a></li>
-            {{--<li class="header_links_item trends" >{{__('تريند')}}</li>--}}
-        </ul>
-    </div>
+    
 </nav>

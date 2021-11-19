@@ -6,47 +6,12 @@
         <div class="footer-widgets-part">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="widget text-widget">
-                        <h1><span>{{__("Jusoor")}}</span></h1>
-                        <p style="text-align: justify">{{theme_option('who_we_are')}} </p>
-                    </div>
-
-                </div>
-
-                <div class="col-md-3 col-sm-3">
-                    <div class="widget  links-widget">
-                        <h1><span>{{__("من نحن")}}</span></h1>
-                        <ul class="">
-
-                            <li><span class="time-now"><a
-                                            href="/<?=app()->getLocale()?>/contact-us">{{__('Contact Us')}}</a></span>
-                            </li>
-                            <li><span class="time-now"><a
-                                            href="/<?=app()->getLocale()?>/about-us">{{__('About Us')}}</a></span>
-                            </li>
-                            <li><span class="time-now"><a
-                                            href="/<?=app()->getLocale()?>/researchers-list">{{__('الكُتٌاب')}}</a></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="widget Subscribe-widget">
-                        <h1><span>{{__("تواصل معنا")}}</span></h1>
-                        <p>{{__('إشترك في قائمتنا البريدية')}}</p>
-                        <form action="#">
-                            <input type="/" placeholder="البريد الألكتروني" />
-                            <input type="submit" value="إشترك" />
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-3">
                     <div class="widget social-widget">
                         <h1><span>{{__('Social Media')}}</span></h1>
                         <a class="" href="/">
                             <img width="120" style="margin-bottom: 20px"
-                                 src="{{ RvMedia::getImageUrl(theme_option('light_logo', Theme::asset()->url('images/logo.png'))) }}"
-                                 alt="Nedaa Post logo"></a>
+                                    src="{{ RvMedia::getImageUrl(theme_option('light_logo', Theme::asset()->url('images/logo.png'))) }}"
+                                    alt="Nedaa Post logo"></a>
                         <br>
                         <ul class="social-icons">
                             <li><a target="_blank" href="{{ theme_option('facebook') }}" class="facebook"><i
@@ -64,6 +29,36 @@
 
 
                         </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="widget text-widget">
+                        <h1><span>{{__("About Us")}}</span></h1>
+                        <p style="text-align: justify">{{theme_option('who_we_are')}}</p>
+                        <a href="about-us"><h4><span>{{__("more")}}</span></h4></a>
+                    </div>
+
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <div class="widget  links-widget">
+                        <h1><span>{{__("من نحن")}}</span></h1>
+                        <ul class="">
+
+                            <li><span class="time-now"><a href="/<?=app()->getLocale()?>/contact-us">{{__('Contact Us')}}</a></span></li>
+                            <li><span class="time-now"><a href="/<?=app()->getLocale()?>/about-us">{{__('About Us')}}</a></span></li>
+                            <li><span class="time-now"><a href="/<?=app()->getLocale()?>/researchers-list">{{__('الكُتٌاب')}}</a></span></li>
+                            <li><span class="time-now"><a href="/<?=app()->getLocale()?>/jobs">{{__('jobs')}}</a></span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="widget Subscribe-widget">
+                        <h1><span>{{__("تواصل معنا")}}</span></h1>
+                        <p>{{__('إشترك في قائمتنا البريدية')}}</p>
+                        <form action="#">
+                            <input type="/" placeholder="البريد الألكتروني" />
+                            <input type="submit" value="إشترك" />
+                        </form>
                     </div>
                 </div>
             </div>

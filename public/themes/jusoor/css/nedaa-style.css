@@ -25,7 +25,7 @@ body {
 
 .mainmenu .navbar-nav,
 .mainmenu .navbar-nav > li {
-    float: right !important;
+    float: left !important;
     margin-right: 0;
     padding-right: 0;
 }
@@ -63,7 +63,7 @@ body {
 }
 
 .header2 .navbar-default {
-    background: url(https://nedaa-post.com/storage/people-1.png);
+    /* background: url(https://nedaa-post.com/storage/people-1.png); */
     border: none;
 }
 
@@ -83,10 +83,10 @@ body {
 }
 
 .top-line ul.top-line-list li {
-    margin-left: 18px;
-    float: right;
-    padding-left: 10px;
-    padding-right: 10px;
+    /* margin-left: 18px; */
+    float: left;
+    /* padding-left: 10px; */
+    /* padding-right: 10px; */
 }
 
 .owl-carousel.owl-theme {
@@ -505,9 +505,9 @@ img.sy-img {
 }
 
 footer {
-    background: url(https://nedaa-post.com/storage/slider.png);
+    /* background: url(https://nedaa-post.com/storage/slider.png);
     padding-top: 62px;
-    background-size: cover;
+    background-size: cover; */
 }
 
 section.feature-video {

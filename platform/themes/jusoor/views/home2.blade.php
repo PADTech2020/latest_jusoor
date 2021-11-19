@@ -1,6 +1,7 @@
 <?php
-$partners =get_partners(12);
-$isdarat = get_recent_posts(6);
+
+$partners = get_partners(12);
+$isdarat = get_recent_posts(3);
 $mawqif = get_posts_by_category(265, 4);
 $infographic = get_posts_by_category(277, 2);
 $studies = get_posts_by_category(310, 4);
@@ -11,14 +12,10 @@ $underscope = get_posts_by_category(316, 4);
 $analyse = get_posts_by_category(304, 4);
 $religious_movements = get_posts_by_category(337, 4);
 $book_reviews = get_posts_by_category(336, 2);
-$situation_estimate = get_posts_by_category(265, 4);
+$situation_estimate = get_posts_by_category(265, 3);
 $info_report = get_posts_by_category(286, 2);
 $analytics_map = get_posts_by_category(289, 2);
-
-
 $Images_sy = get_posts_by_category(271, 5);
-
-
 
 
 $meta = new \Botble\SeoHelper\SeoOpenGraph;
@@ -30,7 +27,6 @@ $meta->setType('Website');
 $meta->addProperty('site-name', 'جسور للدراسات');
 
 \SeoHelper::setSeoOpenGraph($meta);
-
 ?>
 
 
@@ -48,18 +44,14 @@ $meta->addProperty('site-name', 'جسور للدراسات');
             <div class="grid-box">
                 <div class="row">
                     <div class="title-section m-r-7">
-                        <h1><span>{{__('الإصدارات')}}</span></h1>
+                        <!-- <h1><span>{{__('الإصدارات')}}</span></h1> -->
                     </div>
                     @foreach($isdarat as $post)
-                        <div class="col-md-4 col-sm-6 box5">
-                            <img src="{{ RvMedia::getImageUrl($post->image,'featured') }}" alt="{{ $post->name }}">
-                            <div class="box5-content">
-                                <a href="{{ $post->url }}"><h3 class="title">{{ $post->name }}</h3></a>
-                                <ul class="icon">
-                                <li><a href="{{ $post->name }}"><i class="fa fa-link"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="col-md-4 col-sm-6 box5">
+                        <div class="topic-title">{{ $post->categories->first()->name }}</div>
+                        <img src="{{ RvMedia::getImageUrl($post->image,'featured') }}" alt="{{ $post->name }}">
+                        <h3 class="title"><a href="{{ $post->url }}">{{ $post->name }}</a></h3>
+                    </div>
                     @endforeach
                 </div>
             </div>
@@ -79,33 +71,66 @@ $meta->addProperty('site-name', 'جسور للدراسات');
             </div>
             <div class="row">
                 @foreach($situation_estimate as $post)
-                    <div class="post post-dark col-lg-3 col-12 col-sm-6 mb-20">
-                        <div class="post-wrap">
-                            <div id="dark-main-img" class="box2">
-                                <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image ) }}"/></a>
-                                <div class="box2-content">
-                                    <div class="content1">
-                                        <h4 class="title">{{$post->name}}</h4>
-                                        <ul class="icon">
-                                            <li><a href="{{$post->url}}">
-                                                    <img src="https://staging.jusoor.co/storage/logo-preview-4-1.png"
-                                                         style="width: 50%;height: 50%;">
-                                                </a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="post post-dark col-lg-4 col-12 col-sm-6 mb-20">
+                    <div class="post-wrap">
+                        <div id="dark-main-img">
+                            <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image ) }}" /></a>
                         </div>
                     </div>
+                </div>
                 @endforeach
+            </div>
+            <div class="title-section">
+                <a href=""><h4><span>{{__("more")}}</span></h4></a>
             </div>
         </div>
     </div>
     </div>
 </section>
 
+
+<div class="block-wrapper about">
+    <div class="foreground">
+        <div class="container">
+            <div class="block-content new-dark-style">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="about-text">
+                            <p>{{theme_option('who_we_are')}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="button-list"> <a class="button teal" href="/experts/">خبراؤنا</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--  Video -->
+<section class="block-wrapper block-4 new-dark-style lifestyle m-b-0">
+    <div class="container">
+        <!-- block content -->
+        <div class="block-content new-dark-style">
+            <div class="title-section">
+                <h1><span>أحدث الفيديوهات</span></h1>
+            </div>
+            <div class="row">
+                
+            </div>
+            <div class="title-section">
+                <a href=""><h4><span>{{__("more")}}</span></h4></a>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+
 <!-- دولي الشرق الأوسط ملفات رأي -->
-<section class="block-wrapper block-3 bg-attachment">
+<section class="block-wrapper block-3 bg-attachment" style="display: none;">
     <div class="container">
         <!-- block content -->
         <div class="block-content">
@@ -118,14 +143,13 @@ $meta->addProperty('site-name', 'جسور للدراسات');
                             <div class="title-section">
                                 <h1><span>{{__('تقرير تحليلي')}}</span></h1>
                             </div>
-@if(count($analyse)>0)
+                            @if(count($analyse)>0)
                             <div class="row">
                                 <a href="{{$analyse[0]->url}}">
                                     <div class="col-md-12">
                                         <div class="news-post standard-post">
                                             <div class="post-gallery box3">
-                                                <img src="{{ RvMedia::getImageUrl($analyse[0]->image) }}"
-                                                     alt="{{$analyse[0]->name}}">
+                                                <img src="{{ RvMedia::getImageUrl($analyse[0]->image) }}" alt="{{$analyse[0]->name}}">
                                                 <div class="box3-layer layer-1"></div>
                                                 <div class="box3-layer layer-2"></div>
                                                 <div class="box3-layer layer-3"></div>
@@ -143,14 +167,12 @@ $meta->addProperty('site-name', 'جسور للدراسات');
                             @endphp
                             <ul class="list-posts">
                                 @foreach($analyse as $post)
-                                    <li>
-                                        <a href="{{$post->url}}"><img
-                                                    src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}"
-                                                    alt="{{$post->name}}"></a>
-                                        <div class="post-content">
-                                            <h2><a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a></h2>
-                                        </div>
-                                    </li>
+                                <li>
+                                    <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}" alt="{{$post->name}}"></a>
+                                    <div class="post-content">
+                                        <h2><a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a></h2>
+                                    </div>
+                                </li>
                                 @endforeach
 
                             </ul>
@@ -165,8 +187,7 @@ $meta->addProperty('site-name', 'جسور للدراسات');
                                     <div class="col-md-12">
                                         <div class="news-post standard-post">
                                             <div class="post-gallery box3">
-                                                <img src="{{ RvMedia::getImageUrl($religious_movements[0]->image) }}"
-                                                     alt="{{$religious_movements[0]->name}}">
+                                                <img src="{{ RvMedia::getImageUrl($religious_movements[0]->image) }}" alt="{{$religious_movements[0]->name}}">
                                                 <div class="box3-layer layer-1"></div>
                                                 <div class="box3-layer layer-2"></div>
                                                 <div class="box3-layer layer-3"></div>
@@ -184,14 +205,12 @@ $meta->addProperty('site-name', 'جسور للدراسات');
                             <ul class="list-posts">
                                 @foreach ($religious_movements as $post)
 
-                                    <li>
-                                        <a href="{{$post->url}}"><img
-                                                    src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}"
-                                                    alt="{{$post->name}}"></a>
-                                        <div class="post-content">
-                                            <h2><a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a></h2>
-                                        </div>
-                                    </li>
+                                <li>
+                                    <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}" alt="{{$post->name}}"></a>
+                                    <div class="post-content">
+                                        <h2><a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a></h2>
+                                    </div>
+                                </li>
                                 @endforeach
 
                             </ul>
@@ -206,8 +225,7 @@ $meta->addProperty('site-name', 'جسور للدراسات');
                                     <div class="col-md-12">
                                         <div class="news-post standard-post">
                                             <div class="post-gallery box3">
-                                                <img src="{{ RvMedia::getImageUrl($translations[0]->image) }}"
-                                                     alt="{{$translations[0]->name}}">
+                                                <img src="{{ RvMedia::getImageUrl($translations[0]->image) }}" alt="{{$translations[0]->name}}">
                                                 <div class="box3-layer layer-1"></div>
                                                 <div class="box3-layer layer-2"></div>
                                                 <div class="box3-layer layer-3"></div>
@@ -226,14 +244,12 @@ $meta->addProperty('site-name', 'جسور للدراسات');
                             <ul class="list-posts">
                                 @foreach ($translations as $post)
 
-                                    <li>
-                                        <a href="{{$post->url}}"><img
-                                                    src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}"
-                                                    alt="{{$post->name}}"></a>
-                                        <div class="post-content">
-                                            <h2><a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a></h2>
-                                        </div>
-                                    </li>
+                                <li>
+                                    <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}" alt="{{$post->name}}"></a>
+                                    <div class="post-content">
+                                        <h2><a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a></h2>
+                                    </div>
+                                </li>
                                 @endforeach
 
                             </ul>
@@ -250,7 +266,7 @@ $meta->addProperty('site-name', 'جسور للدراسات');
 
 
 <!-- اقتصاد -->
-<section class="block-wrapper block-4 features-today ">
+<section class="block-wrapper block-4 features-today" style="display: none;">
     <div class="container">
         <div class="row">
 
@@ -263,19 +279,18 @@ $meta->addProperty('site-name', 'جسور للدراسات');
                         <div class="uk-section">
                             <div class="uk-container row">
                                 @if(count($studies)>0)
-                                    @foreach($studies as $post)
-                                        <div class="news-post standard-post col-md-3 col-sm-6">
-                                            <a href="{{ $post->url }}">
-                                                <div class="post-gallery">
-                                                    <img src="{{ RvMedia::getImageUrl($post->image) }}"
-                                                         alt="{{$post->name}}">
-                                                    <div class="rate-level">
-                                                        <h3> {{Str::words($post->name, '10')}}</h3>
-                                                    </div>
-                                                </div>
-                                            </a>
+                                @foreach($studies as $post)
+                                <div class="news-post standard-post col-md-3 col-sm-6">
+                                    <a href="{{ $post->url }}">
+                                        <div class="post-gallery">
+                                            <img src="{{ RvMedia::getImageUrl($post->image) }}" alt="{{$post->name}}">
+                                            <div class="rate-level">
+                                                <h3> {{Str::words($post->name, '10')}}</h3>
+                                            </div>
                                         </div>
-                                    @endforeach
+                                    </a>
+                                </div>
+                                @endforeach
                                 @endif
                             </div>
                         </div>
@@ -288,7 +303,7 @@ $meta->addProperty('site-name', 'جسور للدراسات');
 
 
 <!-- انفوغرافيك -->
-<section class="block-wrapper new-dark-style">
+<section class="block-wrapper new-dark-style" style="display: none;">
     <div class="container">
         <!-- block content -->
         <div class="block-content new-dark-style">
@@ -296,44 +311,41 @@ $meta->addProperty('site-name', 'جسور للدراسات');
                 <h1><span>{{__("الخرائط التحليلية")}}</span></h1>
             </div>
             <div class="row">
-                <?php $post = $analytics_map[0];?>
+                <?php $post = $analytics_map[0]; ?>
                 @if($post)
 
-                    <div class="post post-dark col-lg-6 col-12 mb-20">
-                        <div class="post-wrap">
-                            <div id="dark-main-img" class="box">
-                                <a href="{{$post->url}}"><img
-                                            src="{{ RvMedia::getImageUrl($post->image) }}"
-                                    /></a>
-                                <div class="box-content">
-                                    <a href="{{$post->url}}"><h3 class="title">{{$post->name}}</h3></a>
-                                    <a href="{{ $post->categories->last()->url }}"><span
-                                                class="post">{{ $post->categories->last()->name }}</span></a>
-                                </div>
+                <div class="post post-dark col-lg-6 col-12 mb-20">
+                    <div class="post-wrap">
+                        <div id="dark-main-img" class="box">
+                            <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image) }}" /></a>
+                            <div class="box-content">
+                                <a href="{{$post->url}}">
+                                    <h3 class="title">{{$post->name}}</h3>
+                                </a>
+                                <a href="{{ $post->categories->last()->url }}"><span class="post">{{ $post->categories->last()->name }}</span></a>
                             </div>
-
-
                         </div>
+
+
                     </div>
+                </div>
 
                 @endif
-                <?php $post = $analytics_map[1];?>
+                <?php $post = $analytics_map[1]; ?>
                 @if($post)
-                    <div class="post post-dark col-lg-6 col-12 mb-20">
-                        <div class="post-wrap">
-                            <div id="dark-main-img" class="box">
-                                <a href="{{$post->url}}"><img
-                                            src="{{ RvMedia::getImageUrl($post->image , 'post_big_main' ) }}"
-                                    /></a>
-                                <div class="box-content">
-                                    <a href="{{$post->url}}"><h3 class="title"
-                                                                 style="z-index: 9999;">{{$post->name}}</h3></a>
-                                    <a href="{{ $post->categories->last()->url }}"><span
-                                                class="post">{{ $post->categories->last()->name }}</span></a>
-                                </div>
+                <div class="post post-dark col-lg-6 col-12 mb-20">
+                    <div class="post-wrap">
+                        <div id="dark-main-img" class="box">
+                            <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image , 'post_big_main' ) }}" /></a>
+                            <div class="box-content">
+                                <a href="{{$post->url}}">
+                                    <h3 class="title" style="z-index: 9999;">{{$post->name}}</h3>
+                                </a>
+                                <a href="{{ $post->categories->last()->url }}"><span class="post">{{ $post->categories->last()->name }}</span></a>
                             </div>
                         </div>
                     </div>
+                </div>
 
                 @endif
             </div>
@@ -342,210 +354,198 @@ $meta->addProperty('site-name', 'جسور للدراسات');
     </div>
 </section>
 @if(1==2)
-    <section class="block-wrapper block-3">
-        <div class="container">
-            <!-- block content -->
-            <div class="block-content">
+<section class="block-wrapper block-3">
+    <div class="container">
+        <!-- block content -->
+        <div class="block-content">
 
-                <!-- grid-box -->
-                <div class="grid-box">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <!-- صحة -->
-                            <div class="col-md-4">
-                                <div class="title-section">
-                                    <h1><span>{{\Botble\Blog\Models\Category::getCategoryNameCurrentLang(265)}}</span>
-                                    </h1>
-                                </div>
-                                <div class="row">
-                                    <a href="{{$situation_estimate[0]->url}}">
-                                        <div class="col-md-12">
-                                            <div class="news-post standard-post">
-                                                <div class="post-gallery">
-                                                    <img src="{{ RvMedia::getImageUrl($situation_estimate[0]->image) }}"
-                                                         alt="{{$situation_estimate[0]->name}}">
-                                                    <div class="rate-level">
-                                                        <h3>{{$situation_estimate[0]->name}}</h3>
-                                                    </div>
+            <!-- grid-box -->
+            <div class="grid-box">
+                <div class="row">
+                    <div class="col-md-9">
+                        <!-- صحة -->
+                        <div class="col-md-4">
+                            <div class="title-section">
+                                <h1><span>{{\Botble\Blog\Models\Category::getCategoryNameCurrentLang(265)}}</span>
+                                </h1>
+                            </div>
+                            <div class="row">
+                                <a href="{{$situation_estimate[0]->url}}">
+                                    <div class="col-md-12">
+                                        <div class="news-post standard-post">
+                                            <div class="post-gallery">
+                                                <img src="{{ RvMedia::getImageUrl($situation_estimate[0]->image) }}" alt="{{$situation_estimate[0]->name}}">
+                                                <div class="rate-level">
+                                                    <h3>{{$situation_estimate[0]->name}}</h3>
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
-                                </div>
-                                @php
-                                unset($situation_estimate[0]);
-                                @endphp
-                                <ul class="list-posts">
-                                    @foreach($situation_estimate as $post)
-                                        <li>
-                                            <a href="{{$post->url}}"><img
-                                                        src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}"
-                                                        alt="{{$post->name}}"></a>
-                                            <div class="post-content">
-                                                <h2><a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a></h2>
-                                            </div>
-                                        </li>
-                                    @endforeach
-
-                                </ul>
+                                    </div>
+                                </a>
                             </div>
+                            @php
+                            unset($situation_estimate[0]);
+                            @endphp
+                            <ul class="list-posts">
+                                @foreach($situation_estimate as $post)
+                                <li>
+                                    <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}" alt="{{$post->name}}"></a>
+                                    <div class="post-content">
+                                        <h2><a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a></h2>
+                                    </div>
+                                </li>
+                                @endforeach
 
-                            <!-- الفعاليات -->
-                            <div class="col-md-4">
-                                <div class="title-section">
-                                    <h1><span>{{__('الفعاليات')}}</span>
-                                    </h1>
-                                </div>
-                                <div class="row">
-                                    <a href="{{$events[0]->url}}">
-                                        <div class="col-md-12">
-                                            <div class="news-post standard-post">
-                                                <div class="post-gallery">
-                                                    <img src="{{ RvMedia::getImageUrl($events[0]->image) }}"
-                                                         alt="{{$events[0]->name}}">
-                                                    <div class="rate-level">
-                                                        <h3>{{$events[0]->name}}</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                @php
-                                unset($events[0]);
-                                @endphp
-                                <ul class="list-posts">
-                                    @foreach($events as $post)
-                                        <li>
-                                            <a href="{{$post->url}}"><img
-                                                        src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}"
-                                                        alt="{{$post->name}}"></a>
-                                            <div class="post-content">
-                                                <h2><a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a></h2>
-                                            </div>
-                                        </li>
-                                    @endforeach
-
-                                </ul>
-                            </div>
-
-                            <!--  تحت المجهر -->
-                            <div class="col-md-4">
-                                <div class="title-section">
-                                    <h1><span>{{\Botble\Blog\Models\Category::getCategoryNameCurrentLang(316)}}</span>
-                                    </h1>
-                                </div>
-                                <div class="row">
-                                    <a href="{{$underscope[0]->url}}">
-                                        <div class="col-md-12">
-                                            <div class="news-post standard-post">
-                                                <div class="post-gallery">
-                                                    <img src="{{ RvMedia::getImageUrl($underscope[0]->image) }}"
-                                                         alt="{{$underscope[0]->name}}">
-                                                    <div class="rate-level">
-                                                        <h3>{{$underscope[0]->name}}</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                @php
-                                unset($underscope[0]);
-                                @endphp
-                                <ul class="list-posts">
-                                    @foreach ($underscope as $post)
-
-                                        <li>
-                                            <a href="{{$post->url}}">
-                                                <img src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}"
-                                                     alt="{{$post->name}}"></a>
-                                            <div class="post-content">
-                                                <h2><a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a></h2>
-                                            </div>
-                                        </li>
-                                    @endforeach
-
-                                </ul>
-                            </div>
-
+                            </ul>
                         </div>
 
-                        <div class="col-md-3">
-                            <!-- sidebar -->
-                            <div class="sidebar">
-                                <div class="widget tags-widget">
-                                    <div>
-                                        <div class="title-section">
-                                            <h1>
-                                                <span>{{\Botble\Blog\Models\Category::getCategoryNameCurrentLang(336)}}</span>
-                                            </h1>
-                                        </div>
-                                        <ul class="list-posts">
-                                            @foreach($book_reviews as $post)
-                                                <li>
-                                                    <a href="{{$post->url}}"><img
-                                                                src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}"
-                                                                alt="{{$post->name}}"></a>
-                                                    <div class="post-content">
-                                                        <h2>
-                                                            <a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a>
-                                                        </h2>
-                                                        <ul class="post-tags">
-                                                            <li>
-                                                                <!-- <i class="fa fa-clock-o"></i>{{ date('Y/m/d', strtotime($post->created_at)) }} -->
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="widget tags-widget">
-                                    <div>
-                                        <div class="title-section">
-                                            <h1>
-                                                <span>{{\Botble\Blog\Models\Category::getCategoryNameCurrentLang(265)}}</span>
-                                            </h1>
-                                        </div>
-                                        <ul class="list-posts">
-                                            @foreach($info_report as $post)
-                                                <li>
-                                                    <a href="{{$post->url}}"><img
-                                                                src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}"
-                                                                alt="{{$post->name}}"></a>
-                                                    <div class="post-content">
-                                                        <h2>
-                                                            <a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a>
-                                                        </h2>
-                                                        <ul class="post-tags">
-                                                            <li>
-                                                                <!-- <i class="fa fa-clock-o"></i>{{ date('Y/m/d', strtotime($post->created_at)) }} -->
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
+                        <!-- الفعاليات -->
+                        <div class="col-md-4">
+                            <div class="title-section">
+                                <h1><span>{{__('الفعاليات')}}</span>
+                                </h1>
                             </div>
-                            <!-- End sidebar -->
+                            <div class="row">
+                                <a href="{{$events[0]->url}}">
+                                    <div class="col-md-12">
+                                        <div class="news-post standard-post">
+                                            <div class="post-gallery">
+                                                <img src="{{ RvMedia::getImageUrl($events[0]->image) }}" alt="{{$events[0]->name}}">
+                                                <div class="rate-level">
+                                                    <h3>{{$events[0]->name}}</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            @php
+                            unset($events[0]);
+                            @endphp
+                            <ul class="list-posts">
+                                @foreach($events as $post)
+                                <li>
+                                    <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}" alt="{{$post->name}}"></a>
+                                    <div class="post-content">
+                                        <h2><a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a></h2>
+                                    </div>
+                                </li>
+                                @endforeach
+
+                            </ul>
+                        </div>
+
+                        <!--  تحت المجهر -->
+                        <div class="col-md-4">
+                            <div class="title-section">
+                                <h1><span>{{\Botble\Blog\Models\Category::getCategoryNameCurrentLang(316)}}</span>
+                                </h1>
+                            </div>
+                            <div class="row">
+                                <a href="{{$underscope[0]->url}}">
+                                    <div class="col-md-12">
+                                        <div class="news-post standard-post">
+                                            <div class="post-gallery">
+                                                <img src="{{ RvMedia::getImageUrl($underscope[0]->image) }}" alt="{{$underscope[0]->name}}">
+                                                <div class="rate-level">
+                                                    <h3>{{$underscope[0]->name}}</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            @php
+                            unset($underscope[0]);
+                            @endphp
+                            <ul class="list-posts">
+                                @foreach ($underscope as $post)
+
+                                <li>
+                                    <a href="{{$post->url}}">
+                                        <img src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}" alt="{{$post->name}}"></a>
+                                    <div class="post-content">
+                                        <h2><a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a></h2>
+                                    </div>
+                                </li>
+                                @endforeach
+
+                            </ul>
                         </div>
 
                     </div>
-                </div>
-                <!-- End grid-box -->
 
+                    <div class="col-md-3">
+                        <!-- sidebar -->
+                        <div class="sidebar">
+                            <div class="widget tags-widget">
+                                <div>
+                                    <div class="title-section">
+                                        <h1>
+                                            <span>{{\Botble\Blog\Models\Category::getCategoryNameCurrentLang(336)}}</span>
+                                        </h1>
+                                    </div>
+                                    <ul class="list-posts">
+                                        @foreach($book_reviews as $post)
+                                        <li>
+                                            <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}" alt="{{$post->name}}"></a>
+                                            <div class="post-content">
+                                                <h2>
+                                                    <a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a>
+                                                </h2>
+                                                <ul class="post-tags">
+                                                    <li>
+                                                        <!-- <i class="fa fa-clock-o"></i>{{ date('Y/m/d', strtotime($post->created_at)) }} -->
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="widget tags-widget">
+                                <div>
+                                    <div class="title-section">
+                                        <h1>
+                                            <span>{{\Botble\Blog\Models\Category::getCategoryNameCurrentLang(265)}}</span>
+                                        </h1>
+                                    </div>
+                                    <ul class="list-posts">
+                                        @foreach($info_report as $post)
+                                        <li>
+                                            <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image, 'thumb') }}" alt="{{$post->name}}"></a>
+                                            <div class="post-content">
+                                                <h2>
+                                                    <a href="{{$post->url}}">{{Str::words($post->name, '10')}}</a>
+                                                </h2>
+                                                <ul class="post-tags">
+                                                    <li>
+                                                        <!-- <i class="fa fa-clock-o"></i>{{ date('Y/m/d', strtotime($post->created_at)) }} -->
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End sidebar -->
+                    </div>
+
+                </div>
             </div>
-            <!-- End block content -->
+            <!-- End grid-box -->
+
         </div>
-    </section>
+        <!-- End block content -->
+    </div>
+</section>
 @endif
 
-<section class="block-wrapper block-3">
+<section class="block-wrapper block-3" style="display: none;">
     <div class="container">
         <!-- block content -->
         <div class="block-content">
@@ -563,36 +563,34 @@ $meta->addProperty('site-name', 'جسور للدراسات');
 
                         <div class="row">
                             @if(isset($Images_sy[0]))
-                                <a href="{{$Images_sy[0]->url}}">
-                                    <div class="col-md-6">
-                                        <div class="news-post standard-post">
-                                            <div class="post-gallery box1">
-                                                <img src="{{ RvMedia::getImageUrl($Images_sy[0]->image) }}"
-                                                     alt="{{$Images_sy[0]->name}}">
-                                                <div class="boxContent">
-                                                    <h3 class="title">{{$Images_sy[0]->name}}</h3>
-                                                    <span class="post">{{$Images_sy[0]->name}}</span>
-                                                </div>
+                            <a href="{{$Images_sy[0]->url}}">
+                                <div class="col-md-6">
+                                    <div class="news-post standard-post">
+                                        <div class="post-gallery box1">
+                                            <img src="{{ RvMedia::getImageUrl($Images_sy[0]->image) }}" alt="{{$Images_sy[0]->name}}">
+                                            <div class="boxContent">
+                                                <h3 class="title">{{$Images_sy[0]->name}}</h3>
+                                                <span class="post">{{$Images_sy[0]->name}}</span>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
+                            </a>
                             @endif
                             @if(isset($Images_sy[1]))
-                                <a href="{{$Images_sy[1]->url}}">
-                                    <div class="col-md-6">
-                                        <div class="news-post standard-post">
-                                            <div class="post-gallery box1">
-                                                <img src="{{ RvMedia::getImageUrl($Images_sy[1]->image) }}"
-                                                     alt="{{$Images_sy[1]->name}}">
-                                                <div class="boxContent">
-                                                    <h3 class="title">{{$Images_sy[1]->name}}</h3>
-                                                    <span class="post">{{$Images_sy[1]->name}}</span>
-                                                </div>
+                            <a href="{{$Images_sy[1]->url}}">
+                                <div class="col-md-6">
+                                    <div class="news-post standard-post">
+                                        <div class="post-gallery box1">
+                                            <img src="{{ RvMedia::getImageUrl($Images_sy[1]->image) }}" alt="{{$Images_sy[1]->name}}">
+                                            <div class="boxContent">
+                                                <h3 class="title">{{$Images_sy[1]->name}}</h3>
+                                                <span class="post">{{$Images_sy[1]->name}}</span>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
+                            </a>
                             @endif
                         </div>
                         @php
@@ -601,20 +599,19 @@ $meta->addProperty('site-name', 'جسور للدراسات');
                         @endphp
                         <div class="row" style="margin-top: 20px;">
                             @foreach($Images_sy as $post)
-                                <a href="{{$post->url}}">
-                                    <div class="col-md-4">
-                                        <div class="news-post standard-post">
-                                            <div class="post-gallery box1">
-                                                <img src="{{ RvMedia::getImageUrl($post->image) }}"
-                                                     alt="{{$post->name}}">
-                                                <div class="boxContent">
-                                                    <h3 class="title">{{$post->name}}</h3>
-                                                    <span class="post">{{$post->name}}</span>
-                                                </div>
+                            <a href="{{$post->url}}">
+                                <div class="col-md-4">
+                                    <div class="news-post standard-post">
+                                        <div class="post-gallery box1">
+                                            <img src="{{ RvMedia::getImageUrl($post->image) }}" alt="{{$post->name}}">
+                                            <div class="boxContent">
+                                                <h3 class="title">{{$post->name}}</h3>
+                                                <span class="post">{{$post->name}}</span>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
+                            </a>
                             @endforeach
 
                         </div>
@@ -634,7 +631,7 @@ $meta->addProperty('site-name', 'جسور للدراسات');
 </section>
 
 
-<section class="block-wrapper block-3">
+<section class="block-wrapper block-3" style="display: none;">
     <div class="container">
         <!-- block content -->
         <div class="block-content">
@@ -653,29 +650,28 @@ $meta->addProperty('site-name', 'جسور للدراسات');
                         <div class="">
 
                             @if(count($partners)>0)
-                                <div class="partners-slider  owl-carousel owl-theme">
+                            <div class="partners-slider  owl-carousel owl-theme">
                                 @foreach($partners as $partner)
 
-                                        <div class=" partners item">
-                                            <div class="news-post standard-post">
-                                                <div class="post-gallery box1">
-                                                    <img src="{{ RvMedia::getImageUrl($partner->logo,'item_post') }}"
-                                                         alt="{{$partner->name}}">
-                                                    <div class="boxContent">
-                                                        <h3 class="title">{{$partner->name}}</h3>
-                                                        <ul class="social-icons">
-                                                            <li><a target="_blank" href="{{$partner->facebook}}" class="facebook"><i class="fa fa-facebook"></i></a></li>
-                                                            <li><a target="_blank" href="{{$partner->twitter}}" class="twitter"><i class="fa fa-twitter"></i></a></li>
-                                                            <li><a target="_blank" href="{{$partner->url}}" class="youtube"><i class="fa fa-external-link"></i></a></li>
+                                <div class=" partners item">
+                                    <div class="news-post standard-post">
+                                        <div class="post-gallery box1">
+                                            <img src="{{ RvMedia::getImageUrl($partner->logo,'item_post') }}" alt="{{$partner->name}}">
+                                            <div class="boxContent">
+                                                <h3 class="title">{{$partner->name}}</h3>
+                                                <ul class="social-icons">
+                                                    <li><a target="_blank" href="{{$partner->facebook}}" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a target="_blank" href="{{$partner->twitter}}" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a target="_blank" href="{{$partner->url}}" class="youtube"><i class="fa fa-external-link"></i></a></li>
 
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                </ul>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
 
                                 @endforeach
-                                </div>
+                            </div>
                             @endif
 
                         </div>
@@ -695,4 +691,3 @@ $meta->addProperty('site-name', 'جسور للدراسات');
     <!-- End block content -->
     </div>
 </section>
-
