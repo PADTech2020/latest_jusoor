@@ -1,0 +1,16 @@
+
+
+@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0)
+{ @media {
+    /*
+      Define here the CSS styles applied only to Safari browsers
+      (any version and any device)
+     */
+    body .single-post-box p {
+
+        text-align: right!important;
+    }
+    body .single-post-box p span{
+        text-align: justify!important;
+    }
+}}
