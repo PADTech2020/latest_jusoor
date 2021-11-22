@@ -77,11 +77,13 @@ class Post extends BaseModel
         'breaking_news',
         'trending',
         'format_type',
+        'youtube_link',
         'status',
         'author_id',
         'researcher_id',
         'author_type',
         'published_at',
+
         'caption',
         'short_link',
     ];

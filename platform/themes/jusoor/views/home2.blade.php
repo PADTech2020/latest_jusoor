@@ -1,6 +1,8 @@
 <?php
 
 $partners = get_partners(12);
+$our_news = get_posts_by_category(268, 3);
+$vid = get_posts_by_category(274, 4);
 $isdarat = get_recent_posts(3);
 $mawqif = get_posts_by_category(265, 4);
 $infographic = get_posts_by_category(277, 2);
@@ -31,6 +33,35 @@ $meta->addProperty('site-name', 'جسور للدراسات');
 
 
 {!! do_shortcode('[slider-posts-2][/slider-posts-2]') !!}
+
+        <!--  $situation_estimate -->
+<section class="block-wrapper block-4 studies new-dark-style lifestyle m-b-0">
+    <div class="container">
+        <!-- block content -->
+        <div class="block-content new-dark-style">
+
+            <div class="partners-slider  owl-carousel owl-theme">
+                @foreach($studies as $post)
+
+                    <div class=" partners item">
+                        <div class="news-post standard-post">
+                            <div class="post-gallery box1">
+                                <img src="{{ RvMedia::getImageUrl($post->image,'featured') }}" alt="{{$post->name}}">
+                                <div class="boxContent">
+                                    <p>{{__('دراسات')}}</p>
+                                    <h3 class="title"><a href="{{ $post->url }}">{{$post->name}}</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                @endforeach
+            </div>
+
+        </div>
+    </div>
+    </div>
+</section>
 
 
 <!-- الإصدارات -->
@@ -95,32 +126,105 @@ $meta->addProperty('site-name', 'جسور للدراسات');
             <div class="block-content new-dark-style">
                 <div class="row">
                     <div class="col-md-8">
+<h1 class="light title">{{__('من نحن')}}</h1>
                         <div class="about-text">
                             <p>{{theme_option('who_we_are')}}</p>
+                            <div class="button-list"> <a class="button teal" href="/experts/">خبراؤنا</a></div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="button-list"> <a class="button teal" href="/experts/">خبراؤنا</a></div>
                     </div>
+                    <div class="col-md-12">
+                        <h1 class="light title">{{__('الجهات المتعاونة')}}</h1>
+                        <div class="">
+
+                            @if(count($partners)>0)
+                                <div class="partners-slider  owl-carousel owl-theme">
+                                    @foreach($partners as $partner)
+
+                                        <div class=" partners item">
+                                            <div class="news-post standard-post">
+                                                <div class="post-gallery box1">
+                                                    <img src="{{ RvMedia::getImageUrl($partner->logo,'item_post') }}" alt="{{$partner->name}}">
+                                                    <div class="boxContent">
+                                                        <h3 class="title">{{$partner->name}}</h3>
+                                                        <ul class="social-icons">
+                                                            <li><a target="_blank" href="{{$partner->facebook}}" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                                            <li><a target="_blank" href="{{$partner->twitter}}" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                                            <li><a target="_blank" href="{{$partner->url}}" class="youtube"><i class="fa fa-external-link"></i></a></li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    @endforeach
+                                </div>
+                            @endif
+
+                        </div>
+
+
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--  $situation_estimate -->
+<section class="block-wrapper block-4 new-dark-style lifestyle m-b-0">
+    <div class="container">
+        <!-- block content -->
+        <div class="block-content new-dark-style">
+            <div class="title-section">
+                <h1><span>{{__('Our News')}}</span></h1>
+            </div>
+            <div class="row">
+                @foreach($our_news as $post)
+                    <div class="post post-dark col-lg-4 col-12 col-sm-6 mb-20">
+                        <div class="post-wrap">
+                            <div id="dark-main-img">
+                                <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image ) }}" /></a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="title-section">
+                <a href=""><h4><span>{{__("more")}}</span></h4></a>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
 
 
 <!--  Video -->
-<section class="block-wrapper block-4 new-dark-style lifestyle m-b-0">
+<section class="block-wrapper block-vids block-4 new-dark-style lifestyle m-b-0">
     <div class="container">
         <!-- block content -->
         <div class="block-content new-dark-style">
             <div class="title-section">
                 <h1><span>أحدث الفيديوهات</span></h1>
             </div>
-            <div class="row">
-                
+
+            <div class="row col-md-10" style="margin: 0 auto;float:none">
+                <div class="col-md-12">
+                    @if(count($vid)>0)
+                       {!! convertYoutube($vid[0]->youtube_link) !!}
+                        @endif
+                 </div>
+                @foreach($vid as $post)
+                    @if($post->youtube_link)<div class="col-md-4">
+
+                        {!! convertYoutube($post->youtube_link) !!}
+
+                </div> @endif
+                @endforeach
             </div>
-            <div class="title-section">
+            <div class="title-section col-md-12">
                 <a href=""><h4><span>{{__("more")}}</span></h4></a>
             </div>
         </div>
@@ -641,42 +745,9 @@ $meta->addProperty('site-name', 'جسور للدراسات');
                 <div class="row">
                     <div class="col-md-12">
                         <div class="title-section">
-                            <h1><span>{{__('الجهات المتعاونة')}}</span>
+                            <h1><span>{{__('')}}</span>
                             </h1>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-
-                        <div class="">
-
-                            @if(count($partners)>0)
-                            <div class="partners-slider  owl-carousel owl-theme">
-                                @foreach($partners as $partner)
-
-                                <div class=" partners item">
-                                    <div class="news-post standard-post">
-                                        <div class="post-gallery box1">
-                                            <img src="{{ RvMedia::getImageUrl($partner->logo,'item_post') }}" alt="{{$partner->name}}">
-                                            <div class="boxContent">
-                                                <h3 class="title">{{$partner->name}}</h3>
-                                                <ul class="social-icons">
-                                                    <li><a target="_blank" href="{{$partner->facebook}}" class="facebook"><i class="fa fa-facebook"></i></a></li>
-                                                    <li><a target="_blank" href="{{$partner->twitter}}" class="twitter"><i class="fa fa-twitter"></i></a></li>
-                                                    <li><a target="_blank" href="{{$partner->url}}" class="youtube"><i class="fa fa-external-link"></i></a></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @endforeach
-                            </div>
-                            @endif
-
-                        </div>
-
-
                     </div>
 
 

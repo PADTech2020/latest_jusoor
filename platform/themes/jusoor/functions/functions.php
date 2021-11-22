@@ -150,7 +150,13 @@ function arabicDate($time)
     $temp = str_replace($find, $replace, $time);
     return str_replace($months_en, $months_ar, $temp);
 }
-
+function convertYoutube($string) {
+    return preg_replace(
+        "/\s*[a-zA-Z\/\/:\.]*youtu(be.com\/watch\?v=|.be\/)([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i",
+        "<div class='vid-container'><iframe style='width:100%;' src=\"//www.youtube.com/embed/$2\" class='video-ifram' allowfullscreen ></iframe></div>",
+        $string
+    );
+}
 function GetMediaImg($image, $size)
 {
     $img = RvMedia::getImageUrl($image, $size);

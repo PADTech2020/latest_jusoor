@@ -119,10 +119,10 @@
                 <!-- Logo & advertisement -->
 
                 <div class="logo-advertisement ">
-                    <div class="container-header row">
+                    <div class="container-header ">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="col-3 navbar-header">
-                            <a class="navbar-brand desktop" href="/"><img width="40" src="https://staging-latest.jusoor.co//storage/general/logo-light-jusoor.png" alt="Jusoor logo"></a>
+                            <a class="navbar-brand desktop" href="/"><img width="" src="https://staging-latest.jusoor.co//storage/general/logo-light-jusoor.png" alt="Jusoor logo"></a>
                             <div class="search-button mobile-visible">
                                 <button id="search"><i class="fa fa-search"></i></button>
                                 <div class="search-popup">

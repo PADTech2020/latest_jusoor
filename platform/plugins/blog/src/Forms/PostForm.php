@@ -126,6 +126,14 @@ class PostForm extends FormAbstract
                     'with-short-code' => true,
                 ],
             ])
+            ->add('youtube_link', 'text', [
+                'label' => trans('Youtube Link'),
+                'label_attr' => ['class' => 'control-label '],
+                'attr' => [
+                    'placeholder' => trans('Youtube Link'),
+                    'data-counter' => 120,
+                ],
+            ])
             ->add('status', 'customSelect', [
                 'label' => trans('core/base::tables.status'),
                 'label_attr' => ['class' => 'control-label required'],
